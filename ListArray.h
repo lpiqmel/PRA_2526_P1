@@ -46,7 +46,7 @@ class ListArray : public List<T> {
 
 	friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
 		out << "[";
-		for (int i = 0; i < list.n; ++i) {  // Cambiar list.max por list.n
+		for (int i = 0; i < list.n; ++i) {
 			out << "\n  " << list.arr[i];
 		}
 		if (list.n > 0) {
