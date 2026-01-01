@@ -73,11 +73,11 @@ public:
         	n++;
     	}
    
-    	void append(T e) override {
+    	void append(T e) const override {
         	insert(n, e);
     	}
    
-    	void prepend(T e) override {
+    	void prepend(T e) const override {
         	insert(0, e);
     	}
    
@@ -108,7 +108,7 @@ public:
         	return data;
     	}
    
-    	T get(int pos) override {
+    	T get(int pos) const override {
         	if (pos < 0 || pos >= n) {
             		throw std::out_of_range("Posición inválida");
         	}
@@ -120,7 +120,7 @@ public:
         	return current->data;
     	}
    
-    	int search(T e) override {
+    	int search(T e) const override {
         	Node<T>* current = first;
         	int pos = 0;
         	while (current != nullptr) {
@@ -133,11 +133,11 @@ public:
         	return -1;
     	}
    
-    	bool empty() override {
+    	bool empty() const override {
         	return n == 0;
     	}
    
-    	int size() override {
+    	int size() const override {
         	return n;
     	}
 };
