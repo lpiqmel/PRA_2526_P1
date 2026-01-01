@@ -50,4 +50,79 @@ class ListArray : public List<T> {
 		}
 		return out;
 	}
+
+	void insert(int pos, T e) override {
+        	if (pos < 0 || pos > n) {
+                	throw std::out_of_range("Posición de inserción inválida");
+            	}
+
+            	// Si el array está lleno, redimensionar
+            	if (n == max) {
+                	resize(max * 2);  // Duplicar el tamaño
+            	}
+
+            	// Desplazar elementos a la derecha desde la posición pos
+            	for (int i = n; i > pos; i--) {
+                	arr[i] = arr[i - 1];
+            	}
+
+            	// Insertar el nuevo elemento
+            	arr[pos] = e;
+            	n++;
+        }
+
+        void append(T e) override {
+            	insert(n, e);  // Reutilizar insert para añadir al final
+        }
+
+        void prepend(T e) override {
+        	insert(0, e);  // Reutilizar insert para añadir al principio
+        }
+
+        T remove(int pos) override {
+            	if (pos < 0 || pos >= n) {
+                	throw std::out_of_range("Posición de eliminación inválida");
+            	}
+
+            	// Guardar el elemento a eliminar
+            	T elemento = arr[pos];
+
+            	// Desplazar elementos a la izquierda desde pos+1
+            	for (int i = pos; i < n - 1; i++) {
+                	arr[i] = arr[i + 1];
+            	}
+
+            	n--;
+
+            	// Si el array está muy vacío (menos del 25% de ocupación), reducir tamaño
+            	if (n > 0 && n <= max / 4 && max > MINSIZE) {
+                	resize(max / 2);
+            	}
+
+            	return elemento;
+        }
+
+        T get(int pos) override {
+            	if (pos < 0 || pos >= n) {
+                	throw std::out_of_range("Posición fuera de rango");
+            	}
+            	return arr[pos];
+        }
+
+        int search(T e) override {
+            	for (int i = 0; i < n; i++) {
+                	if (arr[i] == e) {
+                    		return i;
+                	}
+            	}
+            	return -1;  // No encontrado
+        }
+
+        bool empty() override {
+            	return n == 0;
+        }
+
+        int size() override {
+            	return n;
+        }	
 };
