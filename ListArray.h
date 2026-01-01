@@ -38,16 +38,21 @@ class ListArray : public List<T> {
 	}
     
 	T operator[](int pos) {
-        	if (pos < 0 || pos >= max-1) {
+        	if (pos < 0 || pos >= n) {
             		throw std::out_of_range("Índice fuera de rango");
         	}
         	return arr[pos];
 	}
 
 	friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
-		for (int i = 0; i < list.max; ++i) {
-            		out << list.arr[i] << " ";
+		out << "[";
+		for (int i = 0; i < list.n; ++i) {  // Cambiar list.max por list.n
+			out << "\n  " << list.arr[i];
 		}
+		if (list.n > 0) {
+			out << "\n";
+		}
+		out << "]";
 		return out;
 	}
 
@@ -102,14 +107,14 @@ class ListArray : public List<T> {
             	return elemento;
         }
 
-        T get(int pos) override {
+        T get(int pos) const override {
             	if (pos < 0 || pos >= n) {
                 	throw std::out_of_range("Posición fuera de rango");
             	}
             	return arr[pos];
         }
 
-        int search(T e) override {
+        int search(T e) const override {
             	for (int i = 0; i < n; i++) {
                 	if (arr[i] == e) {
                     		return i;
@@ -118,11 +123,11 @@ class ListArray : public List<T> {
             	return -1;  // No encontrado
         }
 
-        bool empty() override {
+        bool empty() const override {
             	return n == 0;
         }
 
-        int size() override {
+        int size() const override {
             	return n;
         }	
 };
