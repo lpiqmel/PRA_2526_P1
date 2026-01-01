@@ -73,11 +73,11 @@ public:
         	n++;
     	}
    
-    	void append(T e) const override {
+    	void append(T e) override {
         	insert(n, e);
     	}
    
-    	void prepend(T e) const override {
+    	void prepend(T e) override {
         	insert(0, e);
     	}
    
