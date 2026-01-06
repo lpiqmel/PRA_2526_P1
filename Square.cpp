@@ -1,6 +1,6 @@
 #include "Square.h"
 
-bool check(Point2D* vertices){
+bool Square::check(Point2D* vertices){
 	double arista_sup = Point2D::distance(vertices[0], vertices[1]);
 	double arista_inf = Point2D::distance(vertices[2], vertices[3]);
 	double arista_izq = Point2D::distance(vertices[0], vertices[3]);
@@ -39,10 +39,10 @@ void Square::set_vertices(Point2D* vertices){
 
 }
 
-std::ostream &operator<<(std::ostream &out, const Rectangle &r) {
-	out << "Rectangle: color = " << r.color;
-	for (int i = 0; i < Rectangle::N_VERTICES; i++) {
-		out << "; v" << i << " = " << r.vs[i];
+std::ostream& operator<<(std::ostream &out, const Square &s) {
+	out << "Square: color = " << s.color;
+	for (int i = 0; i < Square::N_VERTICES; i++) {
+		out << "; v" << i << " = " << s.vs[i];
 	}
 
 	return out;
